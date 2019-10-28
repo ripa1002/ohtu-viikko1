@@ -1,0 +1,7 @@
+# files in root with extension .tmp
+/home/local/rsutinen/ohtu-viikko1/*.tmp
+
+# folders build and .gradle
+/home/local/rsutinen/ohtu-viikko1/build
+/home/local/rsutinen/ohtu-viikko1/.gradle
+
