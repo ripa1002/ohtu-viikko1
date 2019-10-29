@@ -13,11 +13,19 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto varasto2;
+    Varasto varasto3;
+    Varasto virheVarasto1;
+    Varasto virheVarasto2;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         varasto = new Varasto(10);
+        varasto2 = new Varasto(30, 5);
+        varasto3 = new Varasto(2,15);
+        virheVarasto1 = new Varasto(-10);
+        virheVarasto2 = new Varasto(-2, -2);
     }
 
     @Test
@@ -64,5 +72,68 @@ public class VarastoTest {
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
-
+    
+    @Test
+    public void ottaminenLiikaa() {
+        varasto.otaVarastosta(20);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void lisaaminenLiikaa() {
+        varasto.lisaaVarastoon(20);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void toinenKonstruktoriSaldoOikein() {
+        assertEquals(5, varasto2.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void toinenKonstruktoriVapaaOikein() {
+        assertEquals(25, varasto2.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void kolmasKonstruktoriVapaaOikein() {
+        assertEquals(0, varasto3.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void kolmasKonstruktoriSaldoOikein() {
+        assertEquals(2, varasto3.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void lisaaNegatiivinenLuku() {
+        varasto2.lisaaVarastoon(-4);
+        assertEquals(5, varasto2.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otaNegatiivinenLuku() {
+        assertEquals(0, varasto2.otaVarastosta(-6), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void virheellinenKonstruktori1() {
+        assertEquals(0, virheVarasto1.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void virheellinenKonstruktori2Tilavuus() {
+        assertEquals(0, virheVarasto2.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void virheellinenKonstruktori2Saldo() {
+        assertEquals(0, virheVarasto2.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void testaaToString() {
+        String oikea = "saldo = 0.0, vielä tilaa 10.0";
+        assertEquals(oikea, varasto.toString());
+    }
 }
