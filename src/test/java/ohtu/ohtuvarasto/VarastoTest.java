@@ -118,7 +118,7 @@ public class VarastoTest {
     
     @Test
     public void virheellinenKonstruktori1() {
-        assertEquals(0, virheVarasto1.getTilavuus(), vertailuTarkkuus);
+        assertEquals(8, virheVarasto1.getTilavuus(), vertailuTarkkuus);
     }
     
     @Test
