@@ -6,3 +6,11 @@
 /.gradle
 
 /.nb-gradle/
+
+/.vscode
+
+/.settings
+
+.classpath
+
+.project
