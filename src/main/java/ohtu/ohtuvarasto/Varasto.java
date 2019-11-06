@@ -21,6 +21,8 @@ public class Varasto {
             this.tilavuus = tilavuus;
         } else { // virheellinen, nollataan
             this.tilavuus = 0.0;  // => käyttökelvoton varasto
+            this.saldo = 0.0;
+            return;
         }
         
         if (alkuSaldo <= tilavuus) {
